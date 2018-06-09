@@ -1,0 +1,57 @@
+{
+  "name": "crypto-collaboration-barrier",
+  "version": "0.0.1",
+  "description": "Crypto Collaboration Barrier",
+  "main": "./dist/dev/main.bundle.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watch --no-cache",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack --watch"
+  },
+  "dependencies": {
+    "apollo-client": "^2.3.2",
+    "babel-jest": "^23.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "jest": "^23.1.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-apollo": "^2.1.4",
+    "react-dom": "^16.3.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/node": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-react": "^7.0.0-beta.42",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^8.0.0-beta",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "lerna": "^2.11.0",
+    "prettier": "^1.12.1",
+    "prettier-eslint": "^8.8.1",
+    "storybook": "^1.0.0",
+    "uglify-js": "^3.3.27",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4"
+  }
+}
