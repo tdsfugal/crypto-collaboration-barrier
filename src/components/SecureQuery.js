@@ -2,8 +2,7 @@ import React from 'react';
 import { string, func, shape, object, array } from 'prop-types';
 import { Query } from 'react-apollo';
 
-import mapAST from '../mapAST';
-import cleanAST from '../cleanAST';
+import { mapAST, cleanAST } from '../ast';
 import { decryptData } from '../crypto';
 /* eslint-disable no-console */
 

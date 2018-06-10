@@ -2,12 +2,12 @@
 
 jest.unmock('./index');
 // Removes the 'ENCRYPTED - ' substring
-jest.mock('../field/decryptField', () => jest.fn(f => f.slice(12)));
+jest.mock('../field/encryptField', () => jest.fn(f => `ENCRYPTED - ${f}`));
 
-import decryptData from './index';
-import decryptField from '../field/decryptField';
+import encryptData from './index';
+import encryptField from '../field/encryptField';
 
-describe('The decryptData function ', () => {
+describe('The encryptData function ', () => {
   it('should return an unchanged data object with an empty security map', () => {
     const data = {
       getStuff: {
@@ -42,21 +42,21 @@ describe('The decryptData function ', () => {
         },
       },
     };
-    expect(decryptData(data, securityMap)).toEqual(expected);
+    expect(encryptData(data, securityMap)).toEqual(expected);
   });
 
   it('should return a modified data object with an valid security map', () => {
     const data = {
       getStuff: {
-        blork: 'ENCRYPTED - blork',
+        blork: 'blork',
         bada: {
           zzzp: 'zzzp',
-          zzzap: 'ENCRYPTED - zzzap',
+          zzzap: 'zzzap',
         },
         bing: {
           bang: 'bang',
           boom: {
-            bop: 'ENCRYPTED - bop',
+            bop: 'bop',
             bip: 'bip',
           },
         },
@@ -77,21 +77,21 @@ describe('The decryptData function ', () => {
     };
     const expected = {
       getStuff: {
-        blork: 'blork',
+        blork: 'ENCRYPTED - blork',
         bada: {
           zzzp: 'zzzp',
-          zzzap: 'zzzap',
+          zzzap: 'ENCRYPTED - zzzap',
         },
         bing: {
           bang: 'bang',
           boom: {
-            bop: 'bop',
+            bop: 'ENCRYPTED - bop',
             bip: 'bip',
           },
         },
       },
     };
-    expect(decryptData(data, securityMap)).toEqual(expected);
+    expect(encryptData(data, securityMap)).toEqual(expected);
   });
 
   it('should ignore unused map fields', () => {
@@ -103,7 +103,7 @@ describe('The decryptData function ', () => {
         bing: {
           bang: 'bang',
           boom: {
-            bop: 'ENCRYPTED - bop',
+            bop: 'bop',
           },
         },
       },
@@ -130,12 +130,12 @@ describe('The decryptData function ', () => {
         bing: {
           bang: 'bang',
           boom: {
-            bop: 'bop',
+            bop: 'ENCRYPTED - bop',
           },
         },
       },
     };
-    expect(decryptData(data, securityMap)).toEqual(expected);
+    expect(encryptData(data, securityMap)).toEqual(expected);
   });
 
   it('should bypass missing data object', () => {
@@ -155,6 +155,6 @@ describe('The decryptData function ', () => {
       },
     };
     const expected = {};
-    expect(decryptData(data, securityMap)).toEqual(expected);
+    expect(encryptData(data, securityMap)).toEqual(expected);
   });
 });

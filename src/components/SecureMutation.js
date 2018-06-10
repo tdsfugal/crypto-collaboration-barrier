@@ -4,8 +4,7 @@ import React from 'react';
 import { string, func, shape, object, array, arrayOf } from 'prop-types';
 import { Mutation } from 'react-apollo';
 
-import mapAST from '../mapAST';
-import cleanAST from '../cleanAST';
+import { mapAST, cleanAST } from '../ast';
 import { encryptVars, encryptData, decryptData } from '../crypto';
 
 export default function SecureMutation({

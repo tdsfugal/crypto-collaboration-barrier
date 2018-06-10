@@ -6,7 +6,7 @@ import decryptField from './decryptField';
 
 describe('The decryptField function ', () => {
   it('should decrypt strings', () => {
-    const field = 'ENCRYPTED:this is a string';
+    const field = 'ENCRYPTED - this is a string';
     const expected = 'this is a string';
     expect(decryptField(field)).toEqual(expected);
   });
