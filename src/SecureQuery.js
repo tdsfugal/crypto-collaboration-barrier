@@ -2,24 +2,24 @@ import React from 'react';
 import { string, func, shape, object, array } from 'prop-types';
 import { Query } from 'react-apollo';
 
-import { mapAST, cleanAST } from '../ast';
-import { decryptData } from '../crypto';
+import { mapAST, cleanAST } from './ast';
+import { decryptData } from './crypto';
 /* eslint-disable no-console */
 
 export default function SecureQuery({ query, children, ...props }) {
+  // Clone the AST
+  const queryClone = JSON.parse(JSON.stringify(query));
   // Parse the query for @secured annotations to determine which fields to decrypt.
-  const securityMap = mapAST(query);
-
-  // Remove the @secured annotations. They confuse the server.
-  cleanAST(query);
+  const securityMap = mapAST(queryClone);
+  // Remove the @secured annotations. They confuse the server. This side effect is why the
+  // AST must be cloned.
+  cleanAST(queryClone);
 
   return (
-    <Query query={query} {...props}>
+    <Query query={queryClone} {...props}>
       {({ data, ...more }) => {
         if (data && Object.keys(data).length > 0) {
-          console.log(data);
           const decrypted = decryptData(data, securityMap);
-          console.log(decrypted);
           return children({ data: decrypted, ...more });
         }
         return children(more);
