@@ -4,7 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const environ = process.env.BABEL_ENV || process.env.NODE_ENV || 'development';
 // eslint-disable-next-line no-console
-console.log(`Building rezoomme-graphql in ${environ}`);
+console.log(`Building the CCB in ${environ}`);
 
 const config = {
   context: path.join(__dirname, 'src'),
